@@ -13,7 +13,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
+    --primary: 270 76% 74%;
     --primary-foreground: 210 40% 98%;
 
     --secondary: 210 40% 96.1%;
@@ -22,7 +22,7 @@
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 210 40% 96.1%;
+    --accent: 270 76% 93%;
     --accent-foreground: 222.2 47.4% 11.2%;
 
     --destructive: 0 84.2% 60.2%;
@@ -30,7 +30,7 @@
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --ring: 270 76% 74%;
 
     --radius: 0.5rem;
 
@@ -97,5 +97,23 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .chess-piece-transition {
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .chess-piece-hover:hover {
+    transform: scale(1.1);
+  }
+  
+  .valid-move-indicator {
+    @apply w-3 h-3 bg-primary rounded-full opacity-70;
+  }
+  
+  .capture-indicator {
+    @apply ring-2 ring-primary ring-opacity-70;
   }
 }
