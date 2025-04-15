@@ -7,9 +7,15 @@ interface ChessPieceProps {
   piece: Piece;
   pieceStyle: PieceStyle;
   isDragging?: boolean;
+  isSelected?: boolean;
 }
 
-const ChessPiece: React.FC<ChessPieceProps> = ({ piece, pieceStyle, isDragging }) => {
+const ChessPiece: React.FC<ChessPieceProps> = ({ 
+  piece, 
+  pieceStyle, 
+  isDragging, 
+  isSelected 
+}) => {
   // Use Unicode chess symbols as a fallback
   const pieceSymbol = getPieceSymbol(piece);
   
@@ -25,16 +31,28 @@ const ChessPiece: React.FC<ChessPieceProps> = ({ piece, pieceStyle, isDragging }
     const baseStyle = "chess-piece-transition";
     const hoverStyle = "chess-piece-hover";
     const dragStyle = isDragging ? "scale-110 animate-piece-move" : "";
+    const selectedStyle = isSelected ? "ring-2 ring-purple-500" : "";
+    
+    // Enhanced whiteness for white pieces
+    const whiteEnhancement = piece.color === 'white' 
+      ? "brightness-110 contrast-125" 
+      : "";
     
     // Style-specific configurations
     switch (pieceStyle) {
       case 'modern':
-        return `${baseStyle} ${hoverStyle} ${styleClasses.modern} ${piece.color === 'white' ? 'text-white' : 'text-black'} ${dragStyle}`;
+        return `${baseStyle} ${hoverStyle} ${styleClasses.modern} ${
+          piece.color === 'white' ? 'text-white' : 'text-black'
+        } ${dragStyle} ${selectedStyle} ${whiteEnhancement}`;
       case 'minimalist':
-        return `${baseStyle} ${hoverStyle} ${styleClasses.minimalist} ${piece.color === 'white' ? 'text-gray-200' : 'text-gray-800'} ${dragStyle}`;
+        return `${baseStyle} ${hoverStyle} ${styleClasses.minimalist} ${
+          piece.color === 'white' ? 'text-gray-100' : 'text-gray-800'
+        } ${dragStyle} ${selectedStyle} ${whiteEnhancement}`;
       case 'standard':
       default:
-        return `${baseStyle} ${hoverStyle} ${styleClasses.standard} ${piece.color === 'white' ? 'text-white' : 'text-black'} ${dragStyle}`;
+        return `${baseStyle} ${hoverStyle} ${styleClasses.standard} ${
+          piece.color === 'white' ? 'text-white' : 'text-black'
+        } ${dragStyle} ${selectedStyle} ${whiteEnhancement}`;
     }
   };
   
