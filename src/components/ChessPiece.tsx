@@ -33,16 +33,16 @@ const ChessPiece: React.FC<ChessPieceProps> = ({
     const dragStyle = isDragging ? "scale-110 animate-piece-move" : "";
     const selectedStyle = isSelected ? "ring-2 ring-purple-500" : "";
     
-    // Enhanced whiteness for white pieces
+    // Enhanced whiteness for white pieces - improved contrast
     const whiteEnhancement = piece.color === 'white' 
-      ? "brightness-110 contrast-125" 
+      ? "brightness-110 contrast-125 text-gray-100 shadow-sm" 
       : "";
     
-    // Style-specific configurations
+    // Style-specific configurations with improved distinctions
     switch (pieceStyle) {
       case 'modern':
         return `${baseStyle} ${hoverStyle} ${styleClasses.modern} ${
-          piece.color === 'white' ? 'text-white' : 'text-black'
+          piece.color === 'white' ? 'text-white font-extrabold' : 'text-black font-bold'
         } ${dragStyle} ${selectedStyle} ${whiteEnhancement}`;
       case 'minimalist':
         return `${baseStyle} ${hoverStyle} ${styleClasses.minimalist} ${

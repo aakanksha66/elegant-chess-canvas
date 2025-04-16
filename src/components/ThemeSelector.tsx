@@ -26,8 +26,8 @@ const ThemeSelector: React.FC<ThemeSelectorProps> = ({
 
   return (
     <div className="p-4 bg-white shadow-md rounded-lg">
-      <Tabs defaultValue="boardTheme">
-        <TabsList className="grid w-full grid-cols-2">
+      <Tabs defaultValue="boardTheme" className="space-y-4">
+        <TabsList className="grid w-full grid-cols-2 gap-2">
           <TabsTrigger value="boardTheme">Board Theme</TabsTrigger>
           <TabsTrigger value="pieceStyle">Piece Style</TabsTrigger>
         </TabsList>
@@ -64,7 +64,6 @@ const ThemeSelector: React.FC<ThemeSelectorProps> = ({
                   }`}
                   onClick={() => onPieceStyleChange(style)}
                 >
-                  {/* Example piece for each style */}
                   <span className={`
                     ${style === 'standard' ? 'text-2xl' : ''}
                     ${style === 'modern' ? 'text-2xl font-bold' : ''}

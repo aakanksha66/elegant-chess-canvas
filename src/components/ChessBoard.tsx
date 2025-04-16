@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { BoardState, Position, BoardTheme, PieceStyle, Piece, PieceColor } from '../types/chess';
 import { initializeBoard, getValidMoves, isMoveValid, makeMove } from '../utils/chessUtils';
@@ -112,7 +113,7 @@ const ChessBoard: React.FC<ChessBoardProps> = ({ boardTheme, pieceStyle }) => {
     return (
       <div className="flex flex-col justify-around h-full pr-2">
         {[...Array(8)].map((_, i) => (
-          <div key={i} className="flex items-center justify-center text-xs text-gray-600">
+          <div key={i} className="flex items-center justify-center h-full text-xs text-gray-600">
             {8 - i}
           </div>
         ))}
@@ -169,19 +170,27 @@ const ChessBoard: React.FC<ChessBoardProps> = ({ boardTheme, pieceStyle }) => {
       </div>
       
       <div className="mt-4 flex flex-col gap-2">
-        <div className="flex gap-2 justify-center">
+        <div className="flex gap-2 justify-center p-2 bg-gray-100 rounded-md">
+          <span className="text-sm font-medium mr-2">Captured black pieces:</span>
           {capturedPieces.filter(p => p.color === 'black').map((piece, i) => (
             <div key={i} className="text-xl opacity-70">
               <ChessPiece piece={piece} pieceStyle={pieceStyle} />
             </div>
           ))}
+          {capturedPieces.filter(p => p.color === 'black').length === 0 && 
+            <span className="text-sm italic text-gray-500">None yet</span>
+          }
         </div>
-        <div className="flex gap-2 justify-center">
+        <div className="flex gap-2 justify-center p-2 bg-gray-700 rounded-md">
+          <span className="text-sm font-medium text-white mr-2">Captured white pieces:</span>
           {capturedPieces.filter(p => p.color === 'white').map((piece, i) => (
-            <div key={i} className="text-xl opacity-70">
+            <div key={i} className="text-xl opacity-80">
               <ChessPiece piece={piece} pieceStyle={pieceStyle} />
             </div>
           ))}
+          {capturedPieces.filter(p => p.color === 'white').length === 0 && 
+            <span className="text-sm italic text-gray-300">None yet</span>
+          }
         </div>
       </div>
     </div>
