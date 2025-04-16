@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { BoardState, Position, BoardTheme, PieceStyle, Piece, PieceColor } from '../types/chess';
 import { initializeBoard, getValidMoves, isMoveValid, makeMove } from '../utils/chessUtils';
@@ -139,34 +138,26 @@ const ChessBoard: React.FC<ChessBoardProps> = ({ boardTheme, pieceStyle }) => {
         {currentTurn === 'white' ? "White's Turn" : "Black's Turn"}
       </div>
       
-      <div className="flex">
-        {renderRowLabels()}
-        
-        <div className="flex flex-col items-center">
-          <div className="grid grid-cols-8 border border-gray-300 shadow-md">
-            {[...Array(8)].map((_, row) => (
-              [...Array(8)].map((_, col) => (
-                <div
-                  key={`${row}-${col}`}
-                  className={getSquareStyle(row, col)}
-                  onClick={() => handleSquareClick(row, col)}
-                >
-                  {board[row][col] && (
-                    <ChessPiece 
-                      piece={board[row][col]!} 
-                      pieceStyle={pieceStyle}
-                      isDragging={selectedPosition?.row === row && selectedPosition?.col === col}
-                      isSelected={selectedPosition?.row === row && selectedPosition?.col === col}
-                    />
-                  )}
-                  {renderMoveIndicator(row, col)}
-                </div>
-              ))
-            ))}
-          </div>
-          
-          {renderColLabels()}
-        </div>
+      <div className="grid grid-cols-8 border border-gray-300 shadow-md">
+        {[...Array(8)].map((_, row) => (
+          [...Array(8)].map((_, col) => (
+            <div
+              key={`${row}-${col}`}
+              className={getSquareStyle(row, col)}
+              onClick={() => handleSquareClick(row, col)}
+            >
+              {board[row][col] && (
+                <ChessPiece 
+                  piece={board[row][col]!} 
+                  pieceStyle={pieceStyle}
+                  isDragging={selectedPosition?.row === row && selectedPosition?.col === col}
+                  isSelected={selectedPosition?.row === row && selectedPosition?.col === col}
+                />
+              )}
+              {renderMoveIndicator(row, col)}
+            </div>
+          ))
+        ))}
       </div>
       
       <div className="mt-4 flex flex-col gap-2">
